@@ -2,26 +2,17 @@
 var h1Tag = document.querySelector(".hOne");
 var myBtn = document.querySelector(".myBtn");
 var welcomeDiv = document.querySelector(".welcome");
-var answers = document.querySelector(".answers");
+var answers = document.querySelector("#answers");
 var questionsDiv = document.querySelector(".questions");
+var questionTitle = document.querySelector(".myQuestion")
+// var btnOne = document.querySelector(".choice1");
+// var btnTwo = document.querySelector(".choice1");
+// var btnThree = document.querySelector(".choice1");
+// var btnFour = document.querySelector(".choice1");
+var correct = 0
+var incorrect = 0
 
-
-h1Tag.textContent = "Welcome to Code-Quiz";
-questionsDiv.style.display = "none";
-
-
-//This function grabs the question from var myQuestions
-function printQuestion(question) {
-
-    var questionH2 = document.querySelector(".myQuestion");
-    questionH2.innerHTML = question.questions
-    
-   
-}
-
-// ues event target to get data
-// assign questions from answers array to button objects
-//for loop - changes questions and answers
+var index = 0 
 
 var myQuestions = [
     {
@@ -36,7 +27,62 @@ var myQuestions = [
     }
 ];
 
-printQuestion(myQuestions[0])
+
+h1Tag.textContent = "Welcome to Code-Quiz";
+questionsDiv.style.display = "none";
+
+
+//Shows questions from myQuestions
+function printQuestion() {
+answers.innerHTML = ""
+   questionTitle.textContent = myQuestions[index].questions;
+   myQuestions[index].answers.forEach(function(answer){
+       console.log(answer)
+    //    create button, give text, give class
+    var button = document.createElement("button")
+    button.textContent = answer
+    answers.appendChild(button)
+    console.log(button)
+
+    // append new button to questions dive, this will append it under question title.
+    
+   })
+
+
+}
+
+
+function checkResults(event) { }
+// ues event target to get data
+// assign questions from answers array to button objects
+//for loop - changes questions and answers
+answers.addEventListener("click",function(event){
+   
+    if(event.target.matches("button")){
+        if(event.target.textContent === myQuestions[index].correctAnswer){
+            console.log("correct")
+        correct ++;
+        index ++;
+            printQuestion()
+        }else{
+            console.log("you got it wrong")
+            incorrect ++;
+            index ++;
+            printQuestion()
+        }
+    }
+
+})
+
+myBtn.addEventListener("click", function () {
+    //Hiding html element
+    welcomeDiv.style.display = " none"
+    questionsDiv.style.display = "block"
+})
+
+
+printQuestion();
+
 
 
 // The code snippet below generates the question from the myQuestios array, but displays the question on homepage, question page and at the bottom.
@@ -51,11 +97,7 @@ printQuestion(myQuestions[0])
 
 
 
-myBtn.addEventListener("click", function () {
-    //Hiding html element
-    welcomeDiv.style.display = " none"
-    questionsDiv.style.display = "block"
-})
+
 
 
 // answers.addEventListener("click",function(){

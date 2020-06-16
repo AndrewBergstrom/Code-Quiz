@@ -7,15 +7,23 @@
     <title>Document</title>
 
     <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- google font -->
 
 </head>
 
 <body>
     <!-- div d-flex space-between <p> High score & Timer </div?-->
+    <!-- <nav class ="header"> 
+            <div class="card-body" justify-content-end>
+                <a class= "score" href="#"> View High Score</a>
+                <a class="timer"></a>
+            </div>
+        </nav> -->
 
 
-    <!-- h1 Welcome and start quiz -->
+    <!-- Welcome and start quiz -->
     <div class="container">
         <div class="welcome">
             <h1 class="hOne">Welcome</h1>
@@ -24,14 +32,14 @@
 
         <div class="questions">
             <h2 class="myQuestion">Questions Here!</h2>
-            <div class="answers"></div>
-                <ol>
-                    <li><button class="choice1">wow!!!!</button></li>
-                    <li><button class="choice2">cool!!!!</button></li>
-                    <li><button class="choice3">amazing!!!!</button></li>
-                    <li><button class="choice4">nope!!!!</button></li>
-                </ol>
-            
+            <div id="answers"></div>
+            <!-- <ol>
+                <li><button class="choice1">wow!!!!</button></li>
+                <li><button class="choice2">cool!!!!</button></li>
+                <li><button class="choice3">amazing!!!!</button></li>
+                <li><button class="choice4">nope!!!!</button></li>
+            </ol> -->
+
 
         </div>
     </div>
@@ -43,6 +51,15 @@
 
 
     <!-- bootstrap javascript links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 
     <script src="script.js"></script>
 </body>
