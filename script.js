@@ -111,15 +111,24 @@ answers.addEventListener("click", function (event) {
             }
 
         } else {
-            console.log("Game Over");
-            questionsDiv.style.display = "none"
-            finalPage.style.display = "block"
-
+            // console.log("Game Over");
+            // questionsDiv.style.display = "none"
+            // timerEl.textContent = "time: 0"
+            // finalPage.style.display = "block"
+            gameOver()
         }
 
     }
 
 })
+
+function gameOver(){
+    console.log("Game Over");
+    questionsDiv.style.display = "none"
+    timerEl.textContent = "time: 0"
+    finalPage.style.display = "block"
+
+}
 
 
 var countDown = 40
@@ -136,9 +145,10 @@ function timer() {
         countDown--;
 
 
-        if (countDown === -1 || myQuestions.length === index + 1) {
+        // if (countDown <=0 || myQuestions.length === index + 1) {
+        if (countDown <=0 ) {
             clearInterval(clock);
-
+            gameOver()
 
         }
 
