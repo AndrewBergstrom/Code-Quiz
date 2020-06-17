@@ -14,22 +14,27 @@
 </head>
 
 <body>
-    <div d-flex space-between>
-        <p> High score & Timer</p>
-    </div>
-    <nav class="header">
-        <div class="card-body" justify-content-end>
-            <a class="score" href="#"> View High Score</a>
-            <a class="timer"></a>
-        </div>
-    </nav>
+   
+    
 
 
     <!-- Welcome and start quiz -->
     <div class="container">
+        <nav class="header">
+            <div class="card-body">
+                
+                <div class="d-flex flex-row-reverse" id="score">Prev Score:</div>
+                <span class="d-flex flex-row-reverse" id="countdown">Time:</span>
+            </div>
+        </nav>
+        <nav class="header">
+            <div class="card-body">
+                <a class="timer"></a>
+            </div>
+        </nav>
         <div class="welcome">
             <h1 class="hOne">Welcome</h1>
-            <button class="myBtn">Let's start</button>
+            <button class="myBtn btn btn-primary">Let's start</button>
         </div>
 
         <div class="questions">

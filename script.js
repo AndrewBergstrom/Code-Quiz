@@ -11,12 +11,14 @@ var endGame = document.querySelector(".endGame");
 var restartBtn = document.querySelector(".restart");
 var finalPage = document.querySelector(".finalPage");
 var initilasInput = document.querySelector(".initialsInput")
-var initialsBtn= document.querySelector(".initialsBtn")
+var initialsBtn = document.querySelector(".initialsBtn")
+var timerEl = document.getElementById("countdown");
+
 
 
 var correct = 0;
 var incorrect = 0;
-var total =0;
+var total = 0;
 
 var index = 0;
 
@@ -51,11 +53,10 @@ var myQuestions = [
 
 
 
-
-function start(){
+function start() {
 
     questionsDiv.style.display = "none";
-    finalPage.style.display="none"
+    finalPage.style.display = "none"
     h1Tag.textContent = "Welcome to Code-Quiz";
     printQuestion()
 }
@@ -66,72 +67,96 @@ function start(){
 //Shows questions from myQuestions
 function printQuestion() {
 
-answers.innerHTML = ""
-   questionTitle.textContent = myQuestions[index].questions;
-   myQuestions[index].answers.forEach(function(answer){
-       //console.log(answer)
-    //    create button, give text, give class
-    var button = document.createElement("button")
-    button.textContent = answer
-    answers.appendChild(button)
-    //console.log(button)
-    // totalCounter();
-    
-    
-    
-   })
+    answers.innerHTML = ""
+    questionTitle.textContent = myQuestions[index].questions;
+    myQuestions[index].answers.forEach(function (answer) {
+        //console.log(answer)
+        //    create button, give text, give class
+        var button = document.createElement("button")
+        button.textContent = answer
+        answers.appendChild(button)
+        //console.log(button)
+        // totalCounter();
+
+
+
+    })
 
 
 }
 
 
 
-answers.addEventListener("click",function(event){
-   
-    if(event.target.matches("button")){
+answers.addEventListener("click", function (event) {
 
-        if(index < myQuestions.length -1){
-            if(event.target.textContent === myQuestions[index].correctAnswer){
+    if (event.target.matches("button")) {
+
+        if (index < myQuestions.length - 1) {
+            if (event.target.textContent === myQuestions[index].correctAnswer) {
                 console.log("correct")
-            correct ++;
-            index ++;
-            total ++;
+                correct++;
+                index++;
+                total++;
                 printQuestion()
-                
-            }else{
+
+            } else {
                 console.log("you got it wrong")
-                incorrect ++;
-                index ++;
+                incorrect++;
+                index++;
                 total++;
                 printQuestion()
             }
 
-        }else{
+        } else {
             console.log("Game Over");
-            questionsDiv.style.display="none"
-            finalPage.style.display="block"
-            
+            questionsDiv.style.display = "none"
+            finalPage.style.display = "block"
+
         }
-        
+
     }
 
 })
 
 
-myBtn.addEventListener("click", function () {
-    //Hiding html element
-    welcomeDiv.style.display = " none"
-    questionsDiv.style.display = "block"
-})
-initialsBtn.addEventListener("click",function(){
+var countDown = 5
+
+myBtn.addEventListener("click", timer)   
+function timer(){
+     //Hiding html element
+     welcomeDiv.style.display = " none"
+     questionsDiv.style.display = "block"
+ 
+   
+ 
+        var clock = setInterval(function () {
+             timerEl.innerHTML = "time: " + countDown
+             countDown--;
+ 
+             
+             if (countDown === -1) {
+                 alert("Time's up!")
+                 clearInterval(timerEl);
+                 stop()
+ 
+             }
+ 
+         }, 1000);
+}
+
+
+
+
+
+initialsBtn.addEventListener("click", function () {
     var initilasAndScore = {
-        initlas:initilasInput.value,
+        initlas: initilasInput.value,
         score: correct
     }
     initilasAndScore = JSON.stringify(initilasAndScore)
-    localStorage.setItem("scores",initilasAndScore )
+    localStorage.setItem("scores", initilasAndScore)
     location.reload()
-    
+
 })
 
 
