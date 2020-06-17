@@ -14,13 +14,15 @@
 </head>
 
 <body>
-    <!-- div d-flex space-between <p> High score & Timer </div?-->
-    <!-- <nav class ="header"> 
-            <div class="card-body" justify-content-end>
-                <a class= "score" href="#"> View High Score</a>
-                <a class="timer"></a>
-            </div>
-        </nav> -->
+    <div d-flex space-between>
+        <p> High score & Timer</p>
+    </div>
+    <nav class="header">
+        <div class="card-body" justify-content-end>
+            <a class="score" href="#"> View High Score</a>
+            <a class="timer"></a>
+        </div>
+    </nav>
 
 
     <!-- Welcome and start quiz -->
@@ -33,18 +35,16 @@
         <div class="questions">
             <h2 class="myQuestion">Questions Here!</h2>
             <div id="answers"></div>
-            <!-- <ol>
-                <li><button class="choice1">wow!!!!</button></li>
-                <li><button class="choice2">cool!!!!</button></li>
-                <li><button class="choice3">amazing!!!!</button></li>
-                <li><button class="choice4">nope!!!!</button></li>
-            </ol> -->
-
-
         </div>
+        <div class="finalPage">
+            <div class="final hidden">
+                <h1 class="endGame">Quiz Over. See results below!</h1>
+                <input type="text" class="form-control initialsInput" id="exampleFormControlInput1" placeholder="Initials here!">
+                <button type:button class="initialsBtn btn btn-primary">Submit</button>
+            </div>
     </div>
 
-    </div>
+
 
 
     <!-- start button  -->

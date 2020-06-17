@@ -5,14 +5,22 @@ var welcomeDiv = document.querySelector(".welcome");
 var answers = document.querySelector("#answers");
 var questionsDiv = document.querySelector(".questions");
 var questionTitle = document.querySelector(".myQuestion")
-// var btnOne = document.querySelector(".choice1");
-// var btnTwo = document.querySelector(".choice1");
-// var btnThree = document.querySelector(".choice1");
-// var btnFour = document.querySelector(".choice1");
-var correct = 0
-var incorrect = 0
 
-var index = 0 
+var lastPage = document.querySelector(".final");
+var endGame = document.querySelector(".endGame");
+var restartBtn = document.querySelector(".restart");
+var finalPage = document.querySelector(".finalPage");
+var initilasInput = document.querySelector(".initialsInput")
+var initialsBtn= document.querySelector(".initialsBtn")
+
+
+var correct = 0;
+var incorrect = 0;
+var total =0;
+
+var index = 0;
+
+
 
 var myQuestions = [
     {
@@ -20,31 +28,56 @@ var myQuestions = [
         answers: ["Square Brackets", "Curly Brackets", "Parentheses", "Quotations"],
         correctAnswer: "Parentheses"
     },
+
     {
-        questions: "Is today fun?",
-        answers: ["Yes", "No", "Not Sure!"],
-        correctAnswer: "Yes"
+        questions: "The # symbol is used to grab what selector?",
+        answers: ["tag", "id", "class", "first"],
+        correctAnswer: "id"
+    },
+
+    {
+        questions: "A useful tool during the development stage and debugging is_____?",
+        answers: ["javaScript", "terminal/bash", "for loops", "console.log"],
+        correctAnswer: "console.log"
+    },
+
+    {
+        questions: "What HTML attribute references an external javaScript file?",
+        answers: ["src", "href", "index", "class"],
+        correctAnswer: "src"
     }
+
 ];
 
 
-h1Tag.textContent = "Welcome to Code-Quiz";
-questionsDiv.style.display = "none";
+
+
+function start(){
+
+    questionsDiv.style.display = "none";
+    finalPage.style.display="none"
+    h1Tag.textContent = "Welcome to Code-Quiz";
+    printQuestion()
+}
+
+
 
 
 //Shows questions from myQuestions
 function printQuestion() {
+
 answers.innerHTML = ""
    questionTitle.textContent = myQuestions[index].questions;
    myQuestions[index].answers.forEach(function(answer){
-       console.log(answer)
+       //console.log(answer)
     //    create button, give text, give class
     var button = document.createElement("button")
     button.textContent = answer
     answers.appendChild(button)
-    console.log(button)
-
-    // append new button to questions dive, this will append it under question title.
+    //console.log(button)
+    // totalCounter();
+    
+    
     
    })
 
@@ -52,60 +85,68 @@ answers.innerHTML = ""
 }
 
 
-function checkResults(event) { }
-// ues event target to get data
-// assign questions from answers array to button objects
-//for loop - changes questions and answers
+
 answers.addEventListener("click",function(event){
    
     if(event.target.matches("button")){
-        if(event.target.textContent === myQuestions[index].correctAnswer){
-            console.log("correct")
-        correct ++;
-        index ++;
-            printQuestion()
-        }else{
-            console.log("you got it wrong")
-            incorrect ++;
+
+        if(index < myQuestions.length -1){
+            if(event.target.textContent === myQuestions[index].correctAnswer){
+                console.log("correct")
+            correct ++;
             index ++;
-            printQuestion()
+            total ++;
+                printQuestion()
+                
+            }else{
+                console.log("you got it wrong")
+                incorrect ++;
+                index ++;
+                total++;
+                printQuestion()
+            }
+
+        }else{
+            console.log("Game Over");
+            questionsDiv.style.display="none"
+            finalPage.style.display="block"
+            
         }
+        
     }
 
 })
+
 
 myBtn.addEventListener("click", function () {
     //Hiding html element
     welcomeDiv.style.display = " none"
     questionsDiv.style.display = "block"
 })
+initialsBtn.addEventListener("click",function(){
+    var initilasAndScore = {
+        initlas:initilasInput.value,
+        score: correct
+    }
+    initilasAndScore = JSON.stringify(initilasAndScore)
+    localStorage.setItem("scores",initilasAndScore )
+    location.reload()
+    
+})
 
 
-printQuestion();
-
-
-
-// The code snippet below generates the question from the myQuestios array, but displays the question on homepage, question page and at the bottom.
-
-// for (var i = 0; i< myQuestions.length; i++){
-//     var questions = myQuestions[i].questions;
-//     document.write(questions);
-//     var options = myQuestions[i].answers;
-
-// }
-
-
+start()
 
 
 
 
 
-// answers.addEventListener("click",function(){
-//     myQuestions.style.display ="block"
-//    // console.log(myQuestions)
-// })
 
-//myQuestions.textContent=
-//myQuestions.textContent = myQuestions[0].answers[0]
 
-//if (event.taget.textcontent === myQuestions[Whatever the index of that question is].answers)
+
+
+
+
+
+
+
