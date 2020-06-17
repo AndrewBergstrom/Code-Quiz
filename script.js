@@ -86,12 +86,11 @@ function printQuestion() {
 }
 
 
-
 answers.addEventListener("click", function (event) {
 
     if (event.target.matches("button")) {
 
-        if (index < myQuestions.length - 1) {
+        if (index < myQuestions.length  -1) {
             if (event.target.textContent === myQuestions[index].correctAnswer) {
                 console.log("correct")
                 correct++;
@@ -105,6 +104,10 @@ answers.addEventListener("click", function (event) {
                 index++;
                 total++;
                 printQuestion()
+                countDown -= 10
+                if (countDown < 0) {
+                    countDown = 0;
+                }
             }
 
         } else {
@@ -119,29 +122,27 @@ answers.addEventListener("click", function (event) {
 })
 
 
-var countDown = 5
+var countDown = 40
 
-myBtn.addEventListener("click", timer)   
-function timer(){
-     //Hiding html element
-     welcomeDiv.style.display = " none"
-     questionsDiv.style.display = "block"
- 
-   
- 
-        var clock = setInterval(function () {
-             timerEl.innerHTML = "time: " + countDown
-             countDown--;
- 
-             
-             if (countDown === -1) {
-                 alert("Time's up!")
-                 clearInterval(timerEl);
-                 stop()
- 
-             }
- 
-         }, 1000);
+myBtn.addEventListener("click", timer)
+
+function timer() {
+    //Hiding html element
+    welcomeDiv.style.display = " none"
+    questionsDiv.style.display = "block"
+
+    var clock = setInterval(function () {
+        timerEl.innerHTML = "time: " + countDown
+        countDown--;
+
+
+        if (countDown === -1 || myQuestions.length === index + 1) {
+            clearInterval(clock);
+
+
+        }
+
+    }, 1000);
 }
 
 
