@@ -1,3 +1,4 @@
+  
 //method that we use to change defined tag
 var h1Tag = document.querySelector(".hOne");
 var myBtn = document.querySelector(".myBtn");
@@ -86,6 +87,29 @@ function printQuestion() {
 }
 
 
+myBtn.addEventListener("click", timer)
+
+var countDown = 41;
+function timer() {
+  //Hiding html element
+  welcomeDiv.style.display = " none";
+  questionsDiv.style.display = "block";
+
+  var clock = setInterval(function () {
+    countDown--;
+    timerEl.innerHTML = "time: " + countDown;
+    // if (countDown ===0 || myQuestions.length === index + 1) {
+
+    if (countDown <= 0) {
+      clearInterval(clock);
+      gameOver();
+     
+    }
+  }, 1000);
+}
+
+
+
 answers.addEventListener("click", function (event) {
 
     if (event.target.matches("button")) {
@@ -99,23 +123,20 @@ answers.addEventListener("click", function (event) {
                 printQuestion()
 
             } else {
-                console.log("you got it wrong")
+                
                 incorrect++;
                 index++;
                 total++;
-                printQuestion()
                 countDown -= 10
-                if (countDown < 0) {
-                    countDown = 0;
+                if (countDown > 0) {
+                    printQuestion()
+                    
                 }
             }
 
         } else {
-            // console.log("Game Over");
-            // questionsDiv.style.display = "none"
-            // timerEl.textContent = "time: 0"
-            // finalPage.style.display = "block"
             gameOver()
+            
         }
 
     }
@@ -129,33 +150,6 @@ function gameOver(){
     finalPage.style.display = "block"
 
 }
-
-
-var countDown = 40
-
-myBtn.addEventListener("click", timer)
-
-function timer() {
-    //Hiding html element
-    welcomeDiv.style.display = " none"
-    questionsDiv.style.display = "block"
-
-    var clock = setInterval(function () {
-        timerEl.innerHTML = "time: " + countDown
-        countDown--;
-
-
-        // if (countDown <=0 || myQuestions.length === index + 1) {
-        if (countDown <=0 ) {
-            clearInterval(clock);
-            gameOver()
-
-        }
-
-    }, 1000);
-}
-
-
 
 
 
@@ -172,11 +166,6 @@ initialsBtn.addEventListener("click", function () {
 
 
 start()
-
-
-
-
-
 
 
 
